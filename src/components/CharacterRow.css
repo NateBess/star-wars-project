@@ -1,0 +1,28 @@
+.table-row {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+
+.row-border {
+  border-bottom: 1px solid white;
+}
+
+.name-column {
+  width: 15vw;
+}
+.birthdate-column {
+  width: 10vw;
+}
+.height-column {
+  width: 10vw;
+}
+.mass-column {
+  width: 10vw;
+}
+.homeworld-column {
+  width: 13vw;
+}
+.species-column {
+  width: 10vw;
+}

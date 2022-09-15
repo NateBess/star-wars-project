@@ -1,3 +1,7 @@
+* {
+  padding: 0;
+  margin: 0;
+}
 .App {
   text-align: center;
 }
@@ -7,19 +11,16 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: #3a3a3b;
+  background-image: url("https://wallpaperaccess.com/full/2188742.jpg");
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +36,48 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/*  CSS ADDED TO FILE */
+
+.image-container {
+  display: flex;
+  margin-bottom: -5vh;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 50vw;
+  min-width: 265px;
+  margin-bottom: 1rem;
+}
+
+.table-container {
+  height: 50vh;
+}
+
+.pages-container {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+.page-number {
+  color: red;
+  font-size: 2rem;
+}
+
+.page-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+  min-width: 265px;
+}
+.btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  font-weight: bold;
 }
