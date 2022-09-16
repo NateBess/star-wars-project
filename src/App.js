@@ -3,47 +3,29 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CharacterTable from "./components/CharacterTable";
 
+const worldCache = {};
+const speciesCache = {};
+
 function App() {
   const [currentPage, setCurrentPage] = useState([]);
   const [searchWord, setSearchWord] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [enablePrevious, setEnablePrevious] = useState(false);
   const [enableNext, setEnableNext] = useState(false);
-  const worldCache = {};
-  const speciesCache = {};
 
   const returnPlanet = async (url) => {
-    if (Object.values(worldCache).includes(url)) {
-      console.log("TEST HERE BELOW");
-      console.log(worldCache);
-      console.log(worldCache[`${url}`]);
-      return worldCache[`${url}`];
-    }
+    if (url in worldCache) return worldCache[`${url}`];
     const data = await axios.get(url);
-    console.log(data);
     worldCache[`${url}`] = data.data.name;
     return data.data.name;
   };
-
   const returnSpecies = async (url) => {
-    if (Object.values(speciesCache).includes(url)) {
-      console.log("TEST HERE BELOW");
-      console.log(speciesCache);
-      console.log(speciesCache[`${url}`]);
-      return speciesCache[`${url}`];
-    }
+    console.log(speciesCache);
+    if (url in speciesCache) return speciesCache[`${url}`];
     const data = await axios.get(url);
-    if (data === undefined) return "Human";
-    console.log(data);
-    speciesCache[`${url}`] = data.data.name;
+    if (data.data.name === undefined) speciesCache[`${url}`] = "Human";
+    else speciesCache[`${url}`] = data.data.name;
     return data.data.name;
-  };
-
-  const getPlanet = async (url) => await axios.get(url).data.name;
-  const getSpecies = async (url) => {
-    const species = await (await axios.get(url)).data.name;
-    if (species === undefined) return "Human";
-    else return species;
   };
 
   const returnFixedPage = async (page) => {
@@ -85,7 +67,7 @@ function App() {
 
   useEffect(() => {
     console.log("Refresh");
-    updateCurrentPage();
+    updateCurrentPage("1");
   }, []);
 
   // BUTTON FUNCTIONS BELOW
@@ -98,7 +80,6 @@ function App() {
     currentPage.sort((a, b) => a.id - b.id);
   };
   const previousButtonAction = async (searchWord) => {
-    console.log(enablePrevious);
     if (enablePrevious === true) {
       if (pageNumber > 1) {
         updateCurrentPage("-", searchWord);
@@ -107,7 +88,6 @@ function App() {
     }
   };
   const nextButtonAction = async (searchWord) => {
-    console.log(enableNext);
     if (enableNext === true) {
       if (pageNumber < 9) {
         updateCurrentPage("+", searchWord);
