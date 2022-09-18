@@ -22,8 +22,10 @@ function App() {
   const returnSpecies = async (url) => {
     if (url in speciesCache) return speciesCache[`${url}`];
     const data = await axios.get(url);
-    if (data.data.name === undefined) speciesCache[`${url}`] = "Human";
-    else speciesCache[`${url}`] = data.data.name;
+    if (data.data.name === undefined) {
+      speciesCache[`${url}`] = "Human";
+      return "Human";
+    } else speciesCache[`${url}`] = data.data.name;
     return data.data.name;
   };
 
