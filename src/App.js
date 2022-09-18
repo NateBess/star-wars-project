@@ -58,7 +58,6 @@ function App() {
     const page = await returnFixedPage(data.data.results);
 
     setCurrentPage(page.sort((a, b) => a.id - b.id));
-    console.log(page.sort((a, b) => a.id - b.id));
   };
 
   const updateCurrentPage = async (action = "*", searchWord) => {
@@ -69,15 +68,12 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Refresh");
     updateCurrentPage("1");
   }, []);
 
-  // BUTTON FUNCTIONS BELOW
   const searchButtonAction = async () => {
     const searchValue = document.getElementById("search-box").value;
     setSearchWord(searchValue);
-    // Get search url's and results to show up the same, maybe skip console log to be safe.
     setPageNumber(1);
     updateCurrentPage("1", searchValue);
     currentPage.sort((a, b) => a.id - b.id);
@@ -102,7 +98,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* IMAGE CONTAINER BELOW */}
         <div className="image-container">
           <img
             src="https://www.freepnglogos.com/uploads/star-wars-logo-31.png"
@@ -111,7 +106,6 @@ function App() {
           />
         </div>
 
-        {/* SEARCH CONTAINER BELOW */}
         <div className="search-container">
           <input
             className="form-control mr-sm-2"
@@ -131,10 +125,8 @@ function App() {
           </button>
         </div>
 
-        {/* TABLE CONTAINER BELOW */}
         <CharacterTable currentResults={currentPage} />
 
-        {/* BUTTONS CONTAINER BELOW */}
         <div className="pages-container">
           <div className="page-buttons-container">
             <button
