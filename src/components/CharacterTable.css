@@ -25,6 +25,9 @@
   .table-body-container {
     font-size: 0.9rem;
   }
+  .pages-container {
+    margin-top: -7rem;
+  }
 }
 
 @media (max-width: 650px) {

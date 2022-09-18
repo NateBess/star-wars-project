@@ -42,7 +42,13 @@ body {
 
 .image-container {
   display: flex;
-  margin-bottom: -5vh;
+  margin-bottom: -3vh;
+  justify-content: center;
+}
+
+.image-container > img {
+  width: auto;
+  height: 220px;
 }
 
 .search-container {
