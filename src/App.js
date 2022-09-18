@@ -20,7 +20,6 @@ function App() {
     return data.data.name;
   };
   const returnSpecies = async (url) => {
-    console.log(speciesCache);
     if (url in speciesCache) return speciesCache[`${url}`];
     const data = await axios.get(url);
     if (data.data.name === undefined) speciesCache[`${url}`] = "Human";
@@ -30,18 +29,18 @@ function App() {
 
   const returnFixedPage = async (page) => {
     const newPage = [];
-    page.forEach(async (character, index) => {
+    for (let i = 0; i < page.length; i++) {
       const newCharacter = {
-        id: index,
-        name: character.name,
-        birth_year: character.birth_year,
-        height: character.height,
-        mass: character.mass,
-        homeworld: await returnPlanet(character.homeworld),
-        species: await returnSpecies(character.species),
+        id: i,
+        name: page[i].name,
+        birth_year: page[i].birth_year,
+        height: page[i].height,
+        mass: page[i].mass,
+        homeworld: await returnPlanet(page[i].homeworld),
+        species: await returnSpecies(page[i].species),
       };
       newPage.push(newCharacter);
-    });
+    }
     return newPage;
   };
 
@@ -55,7 +54,9 @@ function App() {
       : setEnablePrevious(true);
 
     const page = await returnFixedPage(data.data.results);
+
     setCurrentPage(page.sort((a, b) => a.id - b.id));
+    console.log(page.sort((a, b) => a.id - b.id));
   };
 
   const updateCurrentPage = async (action = "*", searchWord) => {
