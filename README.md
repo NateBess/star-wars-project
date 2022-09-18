@@ -6,7 +6,7 @@ View this project [here](https://star-wars.nathanbessler.com/)
 
 <br>
 
-<image src="STARWARS-API.png">
+<image src="STAR-WARS-API.png">
 
 ## Technologies
 
